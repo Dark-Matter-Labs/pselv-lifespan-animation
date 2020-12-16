@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Persistent Selv Lifespan Animation
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Made using [react-p5](https://github.com/Gherciu/react-p5).
 
 ## Available Scripts
 
