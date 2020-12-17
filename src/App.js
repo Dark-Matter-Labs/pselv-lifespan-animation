@@ -196,8 +196,8 @@ class App extends React.Component {
               p5.arc(0, p5.height/2, 2000, 2000,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(treesLifeColor);
               p5.arc(0, p5.height/2, 800, 800,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
-              setGradient(p5,0,0,p5.width,p5.height,p5.color(65,196,195),p5.color(194,214,247),p5.X_AXIS);
-              drawRadialGradient(p5, p5.color(255),p5.color(65,196,195),80);
+              setGradient(p5,0,0,p5.width,p5.height,p5.color(92, 158, 255),p5.color(164,214,222),p5.X_AXIS);
+              drawRadialGradient(p5, p5.color(255),p5.color(164,214,222),80);
               p5.fill(nextGenLifeColor);
               p5.arc(0, p5.height/2, 400, 400,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(yourLifeColor);
