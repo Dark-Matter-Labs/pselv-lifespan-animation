@@ -9,9 +9,10 @@ class App extends React.Component {
     let state = 0;
     let metro_font, inter_font;
     let parentsLifeColor, yourLifeColor, nextGenLifeColor, treesLifeColor, forestLifeColor;
+    let blueGradientColor, greenGradientColor, darkGreenGradientColor, white, black;
     function drawTimeline(p5){
-      p5.stroke('#000');
-      p5.fill('#000');
+      p5.stroke(black);
+      p5.fill(black);
       p5.circle(size/2, p5.height/2, 5);
 
       p5.drawingContext.setLineDash([5, 10]);
@@ -56,14 +57,20 @@ class App extends React.Component {
             metro_font = p5.loadFont(metroExtraBold);
           }}
 					setup={(p5, parentRef) => {
-            p5.frameRate(40);
-            p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(parentRef); //👀 edit here to change size of the canvas
+            p5.disableFriendlyErrors = true;
+            p5.frameRate(30);
+            p5.createCanvas(1000, 600).parent(parentRef); //👀 edit here to change size of the canvas
 
             parentsLifeColor = p5.color(255,255,255,200);
             yourLifeColor = p5.color(255,255,255,150);
             nextGenLifeColor = p5.color(255,255,255,100);
             treesLifeColor = p5.color(164,214,222,200);
             forestLifeColor = p5.color(165,196,195,200);
+            blueGradientColor = p5.color(92,158,255);
+            greenGradientColor = p5.color(165,196,195);
+            darkGreenGradientColor = p5.color(164,214,222);
+            white = p5.color(255);
+            black = p5.color(0);
           }}
           windowResized={p5 => {
             p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
@@ -72,11 +79,10 @@ class App extends React.Component {
             p5.clear();
             p5.strokeWeight(0.5);
             if(state === 0){
-              setGradient(p5,0,0,p5.width,p5.height,p5.color(255),p5.color(92,158,255),p5.Y_AXIS);
-
-              drawRadialGradient(p5, p5.color(92, 158, 255),p5.color(255),40);
+              setGradient(p5,0,0,p5.width,p5.height,white,blueGradientColor,p5.Y_AXIS);
+              drawRadialGradient(p5, blueGradientColor,white,40);
               
-              p5.fill('#000');
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
               p5.text('We are a gift from the past,', p5.width/2-160, p5.height/2);
@@ -87,7 +93,7 @@ class App extends React.Component {
                 size+=5;
               }
 
-              drawRadialGradient(p5, p5.color(255),p5.color(92, 158, 255),40);
+              drawRadialGradient(p5, white,blueGradientColor,40);
 
               p5.fill(parentsLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
@@ -106,9 +112,9 @@ class App extends React.Component {
               }
               p5.noStroke();
 
-              drawRadialGradient(p5, p5.color(255),p5.color(92, 158, 255),40);
+              drawRadialGradient(p5, white,blueGradientColor,40);
               
-              p5.fill(p5.color(yourLifeColor));
+              p5.fill(yourLifeColor);
               p5.arc(0, p5.height/2, size,size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(parentsLifeColor);
               p5.arc(0, p5.height/2, 200, 200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
@@ -124,7 +130,7 @@ class App extends React.Component {
               }
               p5.noStroke();
 
-              drawRadialGradient(p5, p5.color(255),p5.color(92, 158, 255),40);
+              drawRadialGradient(p5, white,blueGradientColor,40);
               
               p5.fill(nextGenLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
@@ -144,7 +150,7 @@ class App extends React.Component {
                 size+=5;
               }
               p5.noStroke();
-              drawRadialGradient(p5, p5.color(255),p5.color(165,196,195),40);
+              drawRadialGradient(p5, white,greenGradientColor,60);
               
               p5.fill(treesLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
@@ -162,11 +168,11 @@ class App extends React.Component {
               p5.text('This is the lifetime', p5.width/2-120, p5.height/2);
               p5.text('of a tree.', p5.width/2-60, p5.height/2+30);
             } else if(state === 5){
-              if(size < 2000){
+              if(size < 1600){
                 size+=5;
               }
               p5.noStroke();
-              drawRadialGradient(p5, p5.color(255),p5.color(165,196,195),40);
+              drawRadialGradient(p5, white,greenGradientColor,60);
               
               p5.fill(forestLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
@@ -193,11 +199,11 @@ class App extends React.Component {
               p5.noStroke();
 
               p5.fill(forestLifeColor);
-              p5.arc(0, p5.height/2, 2000, 2000,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, 1600, 1600,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(treesLifeColor);
               p5.arc(0, p5.height/2, 800, 800,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
-              setGradient(p5,0,0,p5.width,p5.height,p5.color(92, 158, 255),p5.color(164,214,222),p5.X_AXIS);
-              drawRadialGradient(p5, p5.color(255),p5.color(164,214,222),80);
+              setGradient(p5,0,0,p5.width,p5.height,blueGradientColor,darkGreenGradientColor,p5.X_AXIS);
+              drawRadialGradient(p5, white,darkGreenGradientColor,100);
               p5.fill(nextGenLifeColor);
               p5.arc(0, p5.height/2, 400, 400,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(yourLifeColor);
@@ -205,7 +211,7 @@ class App extends React.Component {
               p5.fill(parentsLifeColor);
               p5.arc(0, p5.height/2, 200, 200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
-              p5.fill('#000');
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
               p5.text('Persistent Selv will help you take care', p5.width/2-200, p5.height/2-20);
@@ -221,9 +227,8 @@ class App extends React.Component {
             if(state !== 6){
               p5.textFont(inter_font);
               p5.textSize(18);
-              p5.fill('#2C80FC');
               p5.noStroke();
-              p5.fill('#000');
+              p5.fill(black);
               p5.text('Click anywhere to continue', p5.width/2-90, p5.height/2+92);
             }
           }}
