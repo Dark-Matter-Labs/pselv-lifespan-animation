@@ -10,6 +10,12 @@ class App extends React.Component {
     let metro_font, inter_font;
     let parentsLifeColor, yourLifeColor, nextGenLifeColor, treesLifeColor, forestLifeColor;
     let blueGradientColor, greenGradientColor, darkGreenGradientColor, white, black;
+    const parentsRadius = 100;
+    const yourRadius = 200;
+    const nextGenRadius = 300;
+    const treesRadius = 600;
+    const forestRadius = 1200;
+
     function drawTimeline(p5){
       p5.stroke(black);
       p5.fill(black);
@@ -84,7 +90,7 @@ class App extends React.Component {
             }
             else if(state === 1){
               p5.clear();
-              if(size < 100){
+              if(size < parentsRadius){
                 size+=5;
               }
 
@@ -102,7 +108,7 @@ class App extends React.Component {
               
 
             } else if(state === 2){
-              if(size < 200){
+              if(size < yourRadius){
                 size+=5;
               }
               p5.noStroke();
@@ -112,7 +118,7 @@ class App extends React.Component {
               p5.fill(yourLifeColor);
               p5.arc(0, p5.height/2, size,size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(parentsLifeColor);
-              p5.arc(0, p5.height/2, 100, 100,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               drawTimeline(p5);
 
@@ -120,7 +126,7 @@ class App extends React.Component {
               p5.textSize(30);
               p5.text('This is your lifetime.', p5.width/2-120, p5.height/2);
             } else if(state === 3){
-              if(size < 300){
+              if(size < nextGenRadius){
                 size+=5;
               }
               p5.noStroke();
@@ -130,9 +136,9 @@ class App extends React.Component {
               p5.fill(nextGenLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(yourLifeColor);
-              p5.arc(0, p5.height/2, 200, 200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, yourRadius, yourRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(parentsLifeColor);
-              p5.arc(0, p5.height/2, 100, 100,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               drawTimeline(p5);
               p5.textFont(metro_font);
@@ -140,7 +146,7 @@ class App extends React.Component {
               p5.text('This will be the lifetime', p5.width/2-120, p5.height/2);
               p5.text('of the next generation.', p5.width/2-110, p5.height/2+30);
             } else if(state === 4){
-              if(size < 600){
+              if(size < treesRadius){
                 size+=5;
               }
               p5.noStroke();
@@ -149,11 +155,11 @@ class App extends React.Component {
               p5.fill(treesLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(nextGenLifeColor);
-              p5.arc(0, p5.height/2, 300, 300,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, nextGenRadius, nextGenRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(yourLifeColor);
-              p5.arc(0, p5.height/2, 200, 200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, yourRadius, yourRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(parentsLifeColor);
-              p5.arc(0, p5.height/2, 100, 100,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               drawTimeline(p5);
 
@@ -162,7 +168,7 @@ class App extends React.Component {
               p5.text('This is the lifetime', p5.width/2-120, p5.height/2);
               p5.text('of a tree.', p5.width/2-60, p5.height/2+30);
             } else if(state === 5){
-              if(size < 1200){
+              if(size < forestRadius){
                 size+=5;
               }
               p5.noStroke();
@@ -171,13 +177,13 @@ class App extends React.Component {
               p5.fill(forestLifeColor);
               p5.arc(0, p5.height/2, size, size,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(treesLifeColor);
-              p5.arc(0, p5.height/2, 600, 600,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, treesRadius, treesRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(nextGenLifeColor);
-              p5.arc(0, p5.height/2, 300, 300,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, nextGenRadius, nextGenRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(yourLifeColor);
-              p5.arc(0, p5.height/2, 200, 200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, yourRadius, yourRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(parentsLifeColor);
-              p5.arc(0, p5.height/2, 100, 100,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               drawTimeline(p5);
 
@@ -193,17 +199,17 @@ class App extends React.Component {
               p5.noStroke();
 
               p5.fill(forestLifeColor);
-              p5.arc(0, p5.height/2, 1200, 1200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, forestRadius, forestRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(treesLifeColor);
-              p5.arc(0, p5.height/2, 600, 600,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, treesRadius, treesRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               setGradient(p5,0,0,p5.width,p5.height,blueGradientColor,darkGreenGradientColor,p5.X_AXIS);
               drawRadialGradient(p5, white,darkGreenGradientColor,100);
               p5.fill(nextGenLifeColor);
-              p5.arc(0, p5.height/2, 300, 300,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, nextGenRadius, nextGenRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(yourLifeColor);
-              p5.arc(0, p5.height/2, 200, 200,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, yourRadius, yourRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
               p5.fill(parentsLifeColor);
-              p5.arc(0, p5.height/2, 100, 100,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
+              p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               p5.fill(black);
               p5.textFont(metro_font);
