@@ -55,7 +55,6 @@ class App extends React.Component {
       }
     }
 		return (
-			<div className="App">
 				<Sketch
           preload={(p5) => {
             inter_font = p5.loadFont(interReg);
@@ -76,6 +75,8 @@ class App extends React.Component {
             darkGreenGradientColor = p5.color(164,214,222);
             white = p5.color(255);
             black = p5.color(0);
+
+            p5.noLoop();
           }}
 					draw={p5 => {
             if(state === 0){
@@ -92,6 +93,8 @@ class App extends React.Component {
               p5.clear();
               if(size < parentsRadius){
                 size+=5;
+              } else {
+                p5.noLoop();
               }
 
               drawRadialGradient(p5, white,blueGradientColor,40);
@@ -110,6 +113,8 @@ class App extends React.Component {
             } else if(state === 2){
               if(size < yourRadius){
                 size+=5;
+              } else {
+                p5.noLoop();
               }
               p5.noStroke();
 
@@ -128,6 +133,8 @@ class App extends React.Component {
             } else if(state === 3){
               if(size < nextGenRadius){
                 size+=5;
+              } else {
+                p5.noLoop();
               }
               p5.noStroke();
 
@@ -148,6 +155,8 @@ class App extends React.Component {
             } else if(state === 4){
               if(size < treesRadius){
                 size+=5;
+              } else {
+                p5.noLoop();
               }
               p5.noStroke();
               drawRadialGradient(p5, white,greenGradientColor,40);
@@ -170,6 +179,8 @@ class App extends React.Component {
             } else if(state === 5){
               if(size < forestRadius){
                 size+=5;
+              } else {
+                p5.noLoop();
               }
               p5.noStroke();
               drawRadialGradient(p5, white,greenGradientColor,40);
@@ -186,7 +197,6 @@ class App extends React.Component {
               p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               drawTimeline(p5);
-
               p5.strokeWeight(0.5);
               p5.textSize(16);
               p5.textFont(inter_font);
@@ -235,6 +245,7 @@ class App extends React.Component {
           mouseClicked={p5 => {
             if(state < 6){
               state++;
+              p5.loop();
             } else {
               state = 0;
               size= 0;
@@ -242,7 +253,6 @@ class App extends React.Component {
             }
           }}
 				/>
-			</div>
 		);
 	}
 }
