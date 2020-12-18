@@ -82,7 +82,6 @@ class App extends React.Component {
             if(state === 0){
               setGradient(p5,0,0,p5.width,p5.height,white,blueGradientColor,p5.Y_AXIS);
               drawRadialGradient(p5, blueGradientColor,white,40);
-              
               p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
@@ -108,8 +107,6 @@ class App extends React.Component {
               p5.textSize(30);
               p5.text('This is the lifetime of', p5.width/2-120, p5.height/2);
               p5.text('your parents.', p5.width/2-60, p5.height/2+30);
-              
-
             } else if(state === 2){
               if(size < yourRadius){
                 size+=5;
@@ -206,6 +203,9 @@ class App extends React.Component {
               p5.text('And this is the lifetime', p5.width/2-120, p5.height/2);
               p5.text('of the forest it belongs to.', p5.width/2-150, p5.height/2+30);
             } else if(state === 6){
+              if(size > 1400){
+                p5.noLoop();
+              }
               p5.noStroke();
 
               p5.fill(forestLifeColor);
@@ -249,6 +249,7 @@ class App extends React.Component {
             } else {
               state = 0;
               size= 0;
+              p5.noLoop();
               p5.clear();
             }
           }}
