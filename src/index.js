@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import LifeSpanAnimation from './LifeSpanAnimation';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <LifeSpanAnimation width={1000} height={600} />
   </React.StrictMode>,
   document.getElementById('root')
 );

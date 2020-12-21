@@ -3,7 +3,7 @@ import Sketch from 'react-p5';
 import interReg from './Inter-SemiBold.otf'
 import metroExtraBold from './Metropolis-ExtraBold.otf'
 
-class App extends React.Component {
+class LifeSpanAnimation extends React.Component {
   render() {
     let size = 0;
     let state = 0;
@@ -64,7 +64,7 @@ class App extends React.Component {
 					setup={(p5, parentRef) => {
             p5.disableFriendlyErrors = true;
             p5.frameRate(30);
-            p5.createCanvas(1000, 600).parent(parentRef); //👀 edit here to change size of the canvas
+            p5.createCanvas(this.props.width, this.props.height).parent(parentRef); //👀 edit here to change size of the canvas
 
             parentsLifeColor = p5.color(255,255,255,200);
             yourLifeColor = p5.color(255,255,255,150);
@@ -294,4 +294,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default LifeSpanAnimation;
