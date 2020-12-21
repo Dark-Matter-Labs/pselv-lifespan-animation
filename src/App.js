@@ -10,6 +10,7 @@ class App extends React.Component {
     let metro_font, inter_font;
     let parentsLifeColor, yourLifeColor, nextGenLifeColor, treesLifeColor, forestLifeColor;
     let blueGradientColor, greenGradientColor, darkGreenGradientColor, white, black;
+    let brandRectangle, brandButton;
     const parentsRadius = 100;
     const yourRadius = 200;
     const nextGenRadius = 300;
@@ -73,6 +74,8 @@ class App extends React.Component {
             blueGradientColor = p5.color(92,158,255);
             greenGradientColor = p5.color(165,196,195);
             darkGreenGradientColor = p5.color(164,214,222);
+            brandRectangle = p5.color(181,243,216);
+            brandButton = p5.color(44,128,252);
             white = p5.color(255);
             black = p5.color(0);
 
@@ -82,11 +85,16 @@ class App extends React.Component {
             if(state === 0){
               setGradient(p5,0,0,p5.width,p5.height,white,blueGradientColor,p5.Y_AXIS);
               drawRadialGradient(p5, blueGradientColor,white,40);
+
+              p5.fill(brandRectangle);
+              p5.noStroke();
+              p5.rect(p5.width/2-122, p5.height/2-12, 265, 20);
+              p5.rect(p5.width/2-128,p5.height/2+23, 265, 20);
               p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('We are a gift from the past,', p5.width/2-160, p5.height/2);
-              p5.text('and we will gift the future. ', p5.width/2-150, p5.height/2+30);
+              p5.text('We are a gift from the past, and we', p5.width/2-260, p5.height/2);
+              p5.text('will gift the future. ', p5.width/2-130, p5.height/2+35);
             }
             else if(state === 1){
               p5.clear();
@@ -103,10 +111,15 @@ class App extends React.Component {
 
               drawTimeline(p5);
               
+              p5.fill(brandRectangle);
+              p5.noStroke();
+              p5.rect(p5.width/2 +15, p5.height/2-12, 120, 20);
+              p5.rect(p5.width/2-70,p5.height/2+23, 190, 20);
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('This is the lifetime of', p5.width/2-120, p5.height/2);
-              p5.text('your parents.', p5.width/2-60, p5.height/2+30);
+              p5.text('This is the lifetime of', p5.width/2-140, p5.height/2);
+              p5.text('your parents.', p5.width/2-70, p5.height/2+35);
             } else if(state === 2){
               if(size < yourRadius){
                 size+=5;
@@ -124,9 +137,13 @@ class App extends React.Component {
 
               drawTimeline(p5);
 
+              p5.fill(brandRectangle);
+              p5.noStroke();
+              p5.rect(p5.width/2-40, p5.height/2-12, 190, 20);
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('This is your lifetime.', p5.width/2-120, p5.height/2);
+              p5.text('This is your lifetime.', p5.width/2-140, p5.height/2);
             } else if(state === 3){
               if(size < nextGenRadius){
                 size+=5;
@@ -145,10 +162,16 @@ class App extends React.Component {
               p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
               drawTimeline(p5);
+
+              p5.fill(brandRectangle);
+              p5.noStroke();
+              p5.rect(p5.width/2-70, p5.height/2-12, 270, 20);
+              p5.rect(p5.width/2-40,p5.height/2+23, 245, 20);
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('This will be the lifetime', p5.width/2-120, p5.height/2);
-              p5.text('of the next generation.', p5.width/2-110, p5.height/2+30);
+              p5.text('This will be the lifetime', p5.width/2-140, p5.height/2);
+              p5.text('of the next generation.', p5.width/2-130, p5.height/2+35);
             } else if(state === 4){
               if(size < treesRadius){
                 size+=5;
@@ -169,10 +192,15 @@ class App extends React.Component {
 
               drawTimeline(p5);
 
+              p5.noStroke();
+              p5.fill(brandRectangle);
+              p5.rect(p5.width/2-40, p5.height/2-12, 170, 20);
+              p5.rect(p5.width/2-60,p5.height/2+23, 130, 20);
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('This is the lifetime', p5.width/2-120, p5.height/2);
-              p5.text('of a tree.', p5.width/2-60, p5.height/2+30);
+              p5.text('This is the lifetime', p5.width/2-140, p5.height/2);
+              p5.text('of a tree.', p5.width/2-60, p5.height/2+35);
             } else if(state === 5){
               if(size < forestRadius){
                 size+=5;
@@ -198,10 +226,15 @@ class App extends React.Component {
               p5.textSize(16);
               p5.textFont(inter_font);
 
+              p5.noStroke();
+              p5.fill(brandRectangle);
+              p5.rect(p5.width/2+20, p5.height/2-12, 180, 20);
+              p5.rect(p5.width/2-55,p5.height/2+23, 245, 20);
+              p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('And this is the lifetime', p5.width/2-120, p5.height/2);
-              p5.text('of the forest it belongs to.', p5.width/2-150, p5.height/2+30);
+              p5.text('And this is the lifetime', p5.width/2-140, p5.height/2);
+              p5.text('of the forest it belongs to.', p5.width/2-150, p5.height/2+35);
             } else if(state === 6){
               if(size > 1400){
                 p5.noLoop();
@@ -221,12 +254,13 @@ class App extends React.Component {
               p5.fill(parentsLifeColor);
               p5.arc(0, p5.height/2, parentsRadius, parentsRadius,-p5.HALF_PI, p5.HALF_PI, p5.OPEN);
 
+              p5.noStroke();
               p5.fill(black);
               p5.textFont(metro_font);
               p5.textSize(30);
-              p5.text('Persistent Selv will help you take care', p5.width/2-200, p5.height/2-20);
-              p5.text('of future generations', p5.width/2-70, p5.height/2+10);
-              p5.text('by protecting their environment.', p5.width/2-160, p5.height/2+40);
+              p5.text('Persistent Selv will help you take care', p5.width/2-240, p5.height/2-20);
+              p5.text('of future generations', p5.width/2-110, p5.height/2+10);
+              p5.text('by protecting their environment.', p5.width/2-200, p5.height/2+40);
 
               p5.textFont(inter_font);
               p5.textSize(18);
@@ -234,13 +268,15 @@ class App extends React.Component {
               size+=2;
             }
 
-            if(state !== 6){
-              p5.textFont(inter_font);
-              p5.textSize(18);
-              p5.noStroke();
-              p5.fill(black);
-              p5.text('Click anywhere to continue', p5.width/2-90, p5.height/2+92);
-            }
+            p5.noStroke();
+            p5.fill(brandButton);
+            p5.rect(p5.width/2-40, p5.height/2+80, 109, 48, 100);
+            p5.textFont(inter_font);
+            p5.textSize(16);
+            p5.noStroke();
+            p5.fill(white);
+            p5.text('Next', p5.width/2-5, p5.height/2+110);
+
           }}
           mouseClicked={p5 => {
             if(state < 6){
