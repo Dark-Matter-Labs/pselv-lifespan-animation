@@ -19,11 +19,11 @@ export default function sketch(s) {
     white,
     black;
   let brandRectangle, brandButton, btnColor, btnHover;
-  const parentsRadius = 100;
-  const yourRadius = 200;
-  const nextGenRadius = 300;
-  const treesRadius = 600;
-  const forestRadius = 900;
+  const parentsRadius = 50;
+  const yourRadius = 100;
+  const nextGenRadius = 150;
+  const treesRadius = 300;
+  const forestRadius = 550;
 
   function drawTimeline(s) {
     s.stroke(black);
@@ -44,6 +44,42 @@ export default function sketch(s) {
     s.noStroke();
     s.fill(white);
     s.text("Commit", s.width / 2 - 10, s.height / 2 + 113);
+  }
+
+  function drawFinalText(s) {
+    s.fill(brandRectangle);
+    s.noStroke();
+    s.rect(s.width / 2 + 2, s.height / 2 - 12, 235, 20);
+    s.fill(black);
+    s.textFont(metro_font);
+    s.textSize(30);
+    s.text(
+      "This is your Persistent Selv",
+      s.width / 2 - 170,
+      s.height / 2
+    );
+    s.fill(white);
+    s.textFont(open_font);
+    s.textSize(20);
+    s.text(
+      "Your pledges are now taking care of future",
+      s.width / 2 - 160,
+      s.height / 2 + 40
+    );
+    s.text(
+      "generations by protecting their environment",
+      s.width / 2 - 170,
+      s.height / 2 + 60
+    );
+    
+    s.noStroke();
+    s.fill(btnColor);
+    s.rect(s.width / 2 - 40, s.height / 2 + 80, 134, 52, 100);
+    s.textFont(inter_font);
+    s.textSize(18);
+    s.noStroke();
+    s.fill(white);
+    s.text("Finish", s.width / 2 , s.height / 2 + 113);
   }
 
   function setGradient(s, x, y, w, h, c1, c2, axis) {
@@ -150,6 +186,7 @@ export default function sketch(s) {
       } else {
         s.state.endAnimationState++;
       }
+      s.noStroke();
 
       drawRadialGradient(s, white, blueGradientColor, 40);
 
@@ -157,16 +194,8 @@ export default function sketch(s) {
       s.arc(0, s.height / 2, size, size, -s.HALF_PI, s.HALF_PI, s.OPEN);
 
       drawTimeline(s);
-
-      s.fill(brandRectangle);
-      s.noStroke();
-      s.rect(s.width / 2 + 15, s.height / 2 - 12, 120, 20);
-      s.rect(s.width / 2 - 70, s.height / 2 + 23, 190, 20);
-      s.fill(black);
-      s.textFont(metro_font);
-      s.textSize(30);
-      s.text("This is the lifetime of", s.width / 2 - 140, s.height / 2);
-      s.text("your parents.", s.width / 2 - 70, s.height / 2 + 35);
+      drawFinalText(s);
+     
     } else if (s.state.endAnimationState === 2) {
       if (size < yourRadius) {
         size += 5;
@@ -191,14 +220,7 @@ export default function sketch(s) {
       );
 
       drawTimeline(s);
-
-      s.fill(brandRectangle);
-      s.noStroke();
-      s.rect(s.width / 2 - 40, s.height / 2 - 12, 190, 20);
-      s.fill(black);
-      s.textFont(metro_font);
-      s.textSize(30);
-      s.text("This is your lifetime.", s.width / 2 - 140, s.height / 2);
+      drawFinalText(s);
     } else if (s.state.endAnimationState === 3) {
       if (size < nextGenRadius) {
         size += 5;
@@ -233,16 +255,7 @@ export default function sketch(s) {
       );
 
       drawTimeline(s);
-
-      s.fill(brandRectangle);
-      s.noStroke();
-      s.rect(s.width / 2 - 70, s.height / 2 - 12, 270, 20);
-      s.rect(s.width / 2 - 40, s.height / 2 + 23, 245, 20);
-      s.fill(black);
-      s.textFont(metro_font);
-      s.textSize(30);
-      s.text("This will be the lifetime", s.width / 2 - 140, s.height / 2);
-      s.text("of the next generation.", s.width / 2 - 130, s.height / 2 + 35);
+      drawFinalText(s);
     } else if (s.state.endAnimationState === 4) {
       if (size < treesRadius) {
         size += 5;
@@ -286,16 +299,7 @@ export default function sketch(s) {
       );
 
       drawTimeline(s);
-
-      s.noStroke();
-      s.fill(brandRectangle);
-      s.rect(s.width / 2 - 40, s.height / 2 - 12, 170, 20);
-      s.rect(s.width / 2 - 60, s.height / 2 + 23, 130, 20);
-      s.fill(black);
-      s.textFont(metro_font);
-      s.textSize(30);
-      s.text("This is the lifetime", s.width / 2 - 140, s.height / 2);
-      s.text("of a tree.", s.width / 2 - 60, s.height / 2 + 35);
+      drawFinalText(s);
     } else if (s.state.endAnimationState === 5) {
       if (size < forestRadius) {
         size += 5;
@@ -349,25 +353,9 @@ export default function sketch(s) {
       );
 
       drawTimeline(s);
-      s.strokeWeight(0.5);
-      s.textSize(16);
-      s.textFont(inter_font);
-
-      s.noStroke();
-      s.fill(brandRectangle);
-      s.rect(s.width / 2 + 20, s.height / 2 - 12, 180, 20);
-      s.rect(s.width / 2 - 55, s.height / 2 + 23, 245, 20);
-      s.fill(black);
-      s.textFont(metro_font);
-      s.textSize(30);
-      s.text("And this is the lifetime", s.width / 2 - 140, s.height / 2);
-      s.text(
-        "of the forest it belongs to.",
-        s.width / 2 - 150,
-        s.height / 2 + 35
-      );
+      drawFinalText(s);
     } else if (s.state.endAnimationState === 6) {
-      if (size > 1200) {
+      if (size > 600) {
         s.noLoop();
       }
       s.noStroke();
@@ -434,24 +422,7 @@ export default function sketch(s) {
         s.OPEN
       );
 
-      s.noStroke();
-      s.fill(black);
-      s.textFont(metro_font);
-      s.textSize(30);
-      s.text(
-        "Persistent Selv will help you take care",
-        s.width / 2 - 240,
-        s.height / 2 - 20
-      );
-      s.text("of future generations", s.width / 2 - 110, s.height / 2 + 10);
-      s.text(
-        "by protecting their environment.",
-        s.width / 2 - 200,
-        s.height / 2 + 40
-      );
-
-      s.textFont(inter_font);
-      s.textSize(18);
+      drawFinalText(s);
 
       size += 2;
     }
@@ -484,6 +455,12 @@ export default function sketch(s) {
     else{
       btnColor = brandButton;
     }
-    drawButton(s);
+
+    if(s.state.endAnimationState === 0){
+      drawButton(s);
+    } else {
+      drawFinalText(s);
+    }
+    
   }
 }
