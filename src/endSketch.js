@@ -1,12 +1,13 @@
 import interReg from "./Inter-Bold.otf";
 import metroExtraBold from "./Metropolis-ExtraBold.otf";
+import openSansSemiBold from "./OpenSans-SemiBold.ttf";
 
 export default function sketch(s) {
   s.state = {};
   s.dispatch = () => {};
 
   let size = 0;
-  let metro_font, inter_font;
+  let metro_font, inter_font, open_font;
   let parentsLifeColor,
     yourLifeColor,
     nextGenLifeColor,
@@ -22,7 +23,7 @@ export default function sketch(s) {
   const yourRadius = 200;
   const nextGenRadius = 300;
   const treesRadius = 600;
-  const forestRadius = 1200;
+  const forestRadius = 900;
 
   function drawTimeline(s) {
     s.stroke(black);
@@ -66,6 +67,7 @@ export default function sketch(s) {
   s.preload = () => {
     inter_font = s.loadFont(interReg);
     metro_font = s.loadFont(metroExtraBold);
+    open_font = s.loadFont(openSansSemiBold);
   };
 
   s.setup = () => {
@@ -93,7 +95,7 @@ export default function sketch(s) {
   };
 
   s.draw = () => {
-    if (s.state.animationState === 0) {
+    if (s.state.endAnimationState === 0) {
       setGradient(
         s,
         0,
@@ -108,23 +110,48 @@ export default function sketch(s) {
 
       s.fill(brandRectangle);
       s.noStroke();
-      s.rect(s.width / 2 - 122, s.height / 2 - 12, 265, 20);
-      s.rect(s.width / 2 - 128, s.height / 2 + 23, 265, 20);
+      s.rect(s.width / 2 - 172, s.height / 2 - 12, 412, 20);
       s.fill(black);
       s.textFont(metro_font);
       s.textSize(30);
       s.text(
-        "We are a gift from the past, and we",
-        s.width / 2 - 260,
+        "Your pledges are complete",
+        s.width / 2 - 170,
         s.height / 2
       );
-      s.text("will gift the future. ", s.width / 2 - 130, s.height / 2 + 35);
-    } else if (s.state.animationState === 1) {
+      s.fill(white);
+      s.textFont(open_font);
+      s.textSize(20);
+      s.text(
+        "You can now commit your pledges",
+        s.width / 2 - 140,
+        s.height / 2 + 40
+      );
+      s.text(
+        "to generations",
+        s.width / 2 - 42,
+        s.height / 2 + 60
+      );
+      s.noStroke();
+      s.fill(btnColor);
+      s.rect(s.width / 2 - 40, s.height / 2 + 80, 134, 52, 100);
+      s.textFont(inter_font);
+      s.textSize(18);
+      s.noStroke();
+      s.fill(white);
+      s.text("Commit", s.width / 2 - 10, s.height / 2 + 113);
+  
+      // this is the code for button hover
+      // if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
+      //   btnColor = btnHover}
+      // else{
+      //   btnColor = brandButton }
+    } else if (s.state.endAnimationState === 1) {
       s.clear();
       if (size < parentsRadius) {
         size += 5;
       } else {
-        s.noLoop();
+        s.state.endAnimationState++;
       }
 
       drawRadialGradient(s, white, blueGradientColor, 40);
@@ -143,11 +170,11 @@ export default function sketch(s) {
       s.textSize(30);
       s.text("This is the lifetime of", s.width / 2 - 140, s.height / 2);
       s.text("your parents.", s.width / 2 - 70, s.height / 2 + 35);
-    } else if (s.state.animationState === 2) {
+    } else if (s.state.endAnimationState === 2) {
       if (size < yourRadius) {
         size += 5;
       } else {
-        s.noLoop();
+        s.state.endAnimationState++;
       }
       s.noStroke();
 
@@ -175,11 +202,11 @@ export default function sketch(s) {
       s.textFont(metro_font);
       s.textSize(30);
       s.text("This is your lifetime.", s.width / 2 - 140, s.height / 2);
-    } else if (s.state.animationState === 3) {
+    } else if (s.state.endAnimationState === 3) {
       if (size < nextGenRadius) {
         size += 5;
       } else {
-        s.noLoop();
+        s.state.endAnimationState++;
       }
       s.noStroke();
 
@@ -219,11 +246,11 @@ export default function sketch(s) {
       s.textSize(30);
       s.text("This will be the lifetime", s.width / 2 - 140, s.height / 2);
       s.text("of the next generation.", s.width / 2 - 130, s.height / 2 + 35);
-    } else if (s.state.animationState === 4) {
+    } else if (s.state.endAnimationState === 4) {
       if (size < treesRadius) {
         size += 5;
       } else {
-        s.noLoop();
+        s.state.endAnimationState++;
       }
       s.noStroke();
       drawRadialGradient(s, white, greenGradientColor, 40);
@@ -272,11 +299,11 @@ export default function sketch(s) {
       s.textSize(30);
       s.text("This is the lifetime", s.width / 2 - 140, s.height / 2);
       s.text("of a tree.", s.width / 2 - 60, s.height / 2 + 35);
-    } else if (s.state.animationState === 5) {
+    } else if (s.state.endAnimationState === 5) {
       if (size < forestRadius) {
         size += 5;
       } else {
-        s.noLoop();
+        s.state.endAnimationState++;
       }
       s.noStroke();
       drawRadialGradient(s, white, greenGradientColor, 40);
@@ -342,8 +369,8 @@ export default function sketch(s) {
         s.width / 2 - 150,
         s.height / 2 + 35
       );
-    } else if (s.state.animationState === 6) {
-      if (size > 1400) {
+    } else if (s.state.endAnimationState === 6) {
+      if (size > 1200) {
         s.noLoop();
       }
       s.noStroke();
@@ -431,33 +458,18 @@ export default function sketch(s) {
 
       size += 2;
     }
-
-    s.noStroke();
-    s.fill(btnColor);
-    s.rect(s.width / 2 - 60, s.height / 2 + 80, 134, 52, 100);
-    s.textFont(inter_font);
-    s.textSize(18);
-    s.noStroke();
-    s.fill(white);
-    s.text("Next", s.width / 2 - 16, s.height / 2 + 113);
-
-    // this is the code for button hover
-    // if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
-    //   btnColor = btnHover}
-    // else{
-    //   btnColor = brandButton }
   };
 
   s.mouseClicked = () => {
-    if (s.state.animationState < 6) {
-      s.state.animationState++;
+    if (s.state.endAnimationState < 2) {
+      s.state.endAnimationState++;
       s.dispatch({
         type: "SET_ANIMATION_STATE",
-        payload: s.state.animationState,
+        payload: s.state.endAnimationState,
       });
       s.loop();
     } else {
-      s.state.animationState = 0;
+      s.state.endAnimationState = 0;
       s.dispatch({
         type: "SET_ANIMATION_STATE",
         payload: 0,
