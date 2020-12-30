@@ -1,4 +1,4 @@
-import interReg from "./Inter-SemiBold.otf";
+import interReg from "./Inter-Bold.otf";
 import metroExtraBold from "./Metropolis-ExtraBold.otf";
 
 export default function sketch(s) {
@@ -17,7 +17,7 @@ export default function sketch(s) {
     darkGreenGradientColor,
     white,
     black;
-  let brandRectangle, brandButton;
+  let brandRectangle, brandButton, btnColor;
   const parentsRadius = 100;
   const yourRadius = 200;
   const nextGenRadius = 300;
@@ -85,6 +85,9 @@ export default function sketch(s) {
     brandButton = s.color(44, 128, 252);
     white = s.color(255);
     black = s.color(0);
+    //btnHover = s.color(60, 106, 197);
+
+    btnColor = brandButton;
 
     s.noLoop();
   };
@@ -430,13 +433,18 @@ export default function sketch(s) {
     }
 
     s.noStroke();
-    s.fill(brandButton);
-    s.rect(s.width / 2 - 40, s.height / 2 + 80, 109, 48, 100);
+    s.fill(btnColor);
+    s.rect(s.width / 2 - 40, s.height / 2 + 80, 109, 52, 100);
     s.textFont(inter_font);
-    s.textSize(16);
+    s.textSize(18);
     s.noStroke();
     s.fill(white);
-    s.text("Next", s.width / 2 - 5, s.height / 2 + 110);
+    s.text("Next", s.width / 2 - 8, s.height / 2 + 113);
+
+    // if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
+    //   btnColor = btnHover}
+    // else{
+    //   btnColor = brandButton }
   };
 
   s.mouseClicked = () => {
