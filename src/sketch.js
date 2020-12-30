@@ -441,6 +441,7 @@ export default function sketch(s) {
     s.fill(white);
     s.text("Next", s.width / 2 - 8, s.height / 2 + 113);
 
+    // this is the code for button hover
     // if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
     //   btnColor = btnHover}
     // else{
