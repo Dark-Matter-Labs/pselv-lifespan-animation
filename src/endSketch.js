@@ -7,6 +7,7 @@ export default function sketch(s) {
   s.dispatch = () => {};
 
   let size = 0;
+  let fade = 0;
   let metro_font, inter_font, open_font;
   let parentsLifeColor,
     yourLifeColor,
@@ -15,10 +16,9 @@ export default function sketch(s) {
     forestLifeColor;
   let blueGradientColor,
     greenGradientColor,
-    darkGreenGradientColor,
     white,
     black;
-  let brandRectangle, brandButton, btnColor, btnHover;
+  let brandRectangle, brandButton, btnColor, btnHover, fadeBtnColor;
   const parentsRadius = 50;
   const yourRadius = 100;
   const nextGenRadius = 150;
@@ -58,7 +58,7 @@ export default function sketch(s) {
       s.width / 2 - 170,
       s.height / 2
     );
-    s.fill(white);
+    s.fill(0, 0, 0, fade);
     s.textFont(open_font);
     s.textSize(20);
     s.text(
@@ -71,14 +71,15 @@ export default function sketch(s) {
       s.width / 2 - 170,
       s.height / 2 + 60
     );
+
+    s.fill(fadeBtnColor);
     
     s.noStroke();
-    s.fill(btnColor);
     s.rect(s.width / 2 - 40, s.height / 2 + 80, 134, 52, 100);
     s.textFont(inter_font);
     s.textSize(18);
     s.noStroke();
-    s.fill(white);
+    s.fill(255, 255, 255, fade);
     s.text("Finish", s.width / 2 , s.height / 2 + 113);
   }
 
@@ -129,7 +130,6 @@ export default function sketch(s) {
     forestLifeColor = s.color(165, 196, 195, 200);
     blueGradientColor = s.color(92, 158, 255);
     greenGradientColor = s.color(165, 196, 195);
-    darkGreenGradientColor = s.color(164, 214, 222);
     brandRectangle = s.color(181, 243, 216);
     brandButton = s.color(44, 128, 252);
     white = s.color(255);
@@ -141,6 +141,7 @@ export default function sketch(s) {
   };
 
   s.draw = () => {
+    fadeBtnColor = s.color(44, 128, 252, fade);
     if (s.state.endAnimationState === 0) {
       setGradient(
         s,
@@ -224,6 +225,7 @@ export default function sketch(s) {
     } else if (s.state.endAnimationState === 3) {
       if (size < nextGenRadius) {
         size += 5;
+        fade += 2;
       } else {
         s.state.endAnimationState++;
       }
@@ -259,6 +261,7 @@ export default function sketch(s) {
     } else if (s.state.endAnimationState === 4) {
       if (size < treesRadius) {
         size += 5;
+        fade += 2;
       } else {
         s.state.endAnimationState++;
       }
@@ -303,6 +306,7 @@ export default function sketch(s) {
     } else if (s.state.endAnimationState === 5) {
       if (size < forestRadius) {
         size += 5;
+        fade += 10;
       } else {
         s.state.endAnimationState++;
       }
@@ -354,77 +358,6 @@ export default function sketch(s) {
 
       drawTimeline(s);
       drawFinalText(s);
-    } else if (s.state.endAnimationState === 6) {
-      if (size > 600) {
-        s.noLoop();
-      }
-      s.noStroke();
-
-      s.fill(forestLifeColor);
-      s.arc(
-        0,
-        s.height / 2,
-        forestRadius,
-        forestRadius,
-        -s.HALF_PI,
-        s.HALF_PI,
-        s.OPEN
-      );
-      s.fill(treesLifeColor);
-      s.arc(
-        0,
-        s.height / 2,
-        treesRadius,
-        treesRadius,
-        -s.HALF_PI,
-        s.HALF_PI,
-        s.OPEN
-      );
-      setGradient(
-        s,
-        0,
-        0,
-        s.width,
-        s.height,
-        blueGradientColor,
-        darkGreenGradientColor,
-        s.X_AXIS
-      );
-      drawRadialGradient(s, white, darkGreenGradientColor, 100);
-      s.fill(nextGenLifeColor);
-      s.arc(
-        0,
-        s.height / 2,
-        nextGenRadius,
-        nextGenRadius,
-        -s.HALF_PI,
-        s.HALF_PI,
-        s.OPEN
-      );
-      s.fill(yourLifeColor);
-      s.arc(
-        0,
-        s.height / 2,
-        yourRadius,
-        yourRadius,
-        -s.HALF_PI,
-        s.HALF_PI,
-        s.OPEN
-      );
-      s.fill(parentsLifeColor);
-      s.arc(
-        0,
-        s.height / 2,
-        parentsRadius,
-        parentsRadius,
-        -s.HALF_PI,
-        s.HALF_PI,
-        s.OPEN
-      );
-
-      drawFinalText(s);
-
-      size += 2;
     }
   };
 
@@ -451,9 +384,11 @@ export default function sketch(s) {
   s.mouseMoved = () => {
     if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
       btnColor = btnHover;
+      fadeBtnColor = s.color(60, 106, 197, fade);
     }
     else{
       btnColor = brandButton;
+      fadeBtnColor = s.color(44, 128, 252, fade);
     }
 
     if(s.state.endAnimationState === 0){
