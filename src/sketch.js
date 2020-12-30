@@ -17,7 +17,7 @@ export default function sketch(s) {
     darkGreenGradientColor,
     white,
     black;
-  let brandRectangle, brandButton, btnColor;
+  let brandRectangle, brandButton, btnColor, btnHover;
   const parentsRadius = 100;
   const yourRadius = 200;
   const nextGenRadius = 300;
@@ -32,6 +32,17 @@ export default function sketch(s) {
     s.drawingContext.setLineDash([5, 10]);
     s.line(0, s.height / 2, size / 2, s.height / 2);
     s.drawingContext.setLineDash([]);
+  }
+
+  function drawButton(s) {
+    s.noStroke();
+    s.fill(btnColor);
+    s.rect(s.width / 2 - 60, s.height / 2 + 80, 134, 52, 100);
+    s.textFont(inter_font);
+    s.textSize(18);
+    s.noStroke();
+    s.fill(white);
+    s.text("Next", s.width / 2 - 16, s.height / 2 + 113);
   }
 
   function setGradient(s, x, y, w, h, c1, c2, axis) {
@@ -85,7 +96,7 @@ export default function sketch(s) {
     brandButton = s.color(44, 128, 252);
     white = s.color(255);
     black = s.color(0);
-    //btnHover = s.color(60, 106, 197);
+    btnHover = s.color(60, 106, 197);
 
     btnColor = brandButton;
 
@@ -432,20 +443,8 @@ export default function sketch(s) {
       size += 2;
     }
 
-    s.noStroke();
-    s.fill(btnColor);
-    s.rect(s.width / 2 - 60, s.height / 2 + 80, 134, 52, 100);
-    s.textFont(inter_font);
-    s.textSize(18);
-    s.noStroke();
-    s.fill(white);
-    s.text("Next", s.width / 2 - 16, s.height / 2 + 113);
+    drawButton(s);
 
-    // this is the code for button hover
-    // if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
-    //   btnColor = btnHover}
-    // else{
-    //   btnColor = brandButton }
   };
 
   s.mouseClicked = () => {
@@ -467,4 +466,14 @@ export default function sketch(s) {
       s.clear();
     }
   };
+
+  s.mouseMoved = () => {
+    if((s.width / 2 - 40 < s.mouseX) && (s.width / 2 - 40 + 109 > s.mouseX) && (s.height / 2 + 80 < s.mouseY) && (s.height / 2 + 80 + 52>s.mouseY)){
+      btnColor = btnHover;
+    }
+    else{
+      btnColor = brandButton;
+    }
+    drawButton(s);
+  }
 }
