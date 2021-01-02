@@ -12,7 +12,9 @@ const P5Wrapper = p5Wrapper(generate());
 
 export default function Section() {
   const dispatch = useContext(AppDispatchContext);
-  const { sketch1L, sketch2L, animationState, endAnimationState } = useContext(AppStateContext);
+  const { sketch1L, sketch2L, animationState, endAnimationState } = useContext(
+    AppStateContext
+  );
 
   return (
     <div>

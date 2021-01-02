@@ -6,11 +6,11 @@ export default function reducer(state, { type, payload }) {
         animationState: payload,
       };
 
-      case "SET_END_ANIMATION_STATE":
-        return {
-          ...state,
-          endAnimationState: payload,
-        };
+    case "SET_END_ANIMATION_STATE":
+      return {
+        ...state,
+        endAnimationState: payload,
+      };
 
     default:
       return state;
